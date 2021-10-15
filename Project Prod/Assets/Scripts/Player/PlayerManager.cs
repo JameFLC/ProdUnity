@@ -32,5 +32,6 @@ public class PlayerManager : MonoBehaviour
     public void setIsSafe(bool var)
     {
         isInSafeZone = var;
+        Debug.Log("isInSafeZone " + isInSafeZone); 
     }
 }
