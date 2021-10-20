@@ -6,13 +6,20 @@ public class PlayerController : MonoBehaviour
 {
     // Variables
     [SerializeField]
-    private GameObject playerCamera;
+    private Transform playerCamera;
+
+
 
 
     private Rigidbody RB;
-
-    private Vector3 speed;
-
+    float rotationSmootTime = 0.1f;
+    float rotationSmoothVelocity;
+    float speed = 5;
+    float horizontal;
+    float vertical;
+    Vector3 direction;
+    float targetAngle;
+    float angle;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +29,31 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed.x = Input.GetAxis("Horizontal");
-        speed.z = Input.GetAxis("Vertical");
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
 
+        direction = new Vector3(horizontal, 0f, vertical);
+
+        targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
+
+        angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSmoothVelocity, rotationSmootTime);
+
+        Debug.Log("targetAngle " + targetAngle + " angle " + angle);
     }
     private void FixedUpdate()
     {
-        RB.MovePosition(new Vector3(speed.x, 0, speed.z));
+
+        if (direction.magnitude > 0.1f)
+        {
+           
+
+
+            RB.MoveRotation(Quaternion.Euler(0f, targetAngle, 0f));
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward; 
+            RB.MovePosition(transform.position + moveDir.normalized * speed * Time.fixedDeltaTime);
+
+        }
+            
+        
     }
 }
