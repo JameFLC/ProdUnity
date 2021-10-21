@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-
+    private FrogController frogController;
     private Rigidbody RB;
     float rotationSmootTime = 0.1f;
     float rotationSmoothVelocity;
@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         RB = GetComponent<Rigidbody>();
+        frogController = GetComponent<FrogController>();
     }
 
     // Update is called once per frame
@@ -32,28 +33,19 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-        direction = new Vector3(horizontal, 0f, vertical);
 
-        targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
-
-        angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSmoothVelocity, rotationSmootTime);
-
-        Debug.Log("targetAngle " + targetAngle + " angle " + angle);
-    }
-    private void FixedUpdate()
-    {
-
-        if (direction.magnitude > 0.1f)
+        if (vertical > 0.1)
         {
-           
-
-
-            RB.MoveRotation(Quaternion.Euler(0f, targetAngle, 0f));
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward; 
-            RB.MovePosition(transform.position + moveDir.normalized * speed * Time.fixedDeltaTime);
-
+            frogController.Crawl();
         }
-            
-        
+        if (vertical < 0.1 )
+        {
+            frogController.Idle();
+        }
+
+
+
+       
     }
+    
 }
