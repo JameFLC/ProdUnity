@@ -1,5 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
 --- !u!114 &-1319911404905597823
 MonoBehaviour:
   m_ObjectHideFlags: 11
@@ -13,6 +14,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 4
+=======
+>>>>>>> 74823398c55a6ac0a676a471113bb254ddb8d793
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -26,8 +29,14 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
+<<<<<<< HEAD
   m_CustomRenderQueue: -1
   stringTagMap: {}
+=======
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
+>>>>>>> 74823398c55a6ac0a676a471113bb254ddb8d793
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -100,6 +109,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+<<<<<<< HEAD
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -109,15 +119,49 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
+=======
+    - _GlossMapScale: 1
+    - _Glossiness: 0
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _Smoothness: 0
+>>>>>>> 74823398c55a6ac0a676a471113bb254ddb8d793
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+<<<<<<< HEAD
+=======
+    - _UVSec: 0
+>>>>>>> 74823398c55a6ac0a676a471113bb254ddb8d793
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+<<<<<<< HEAD
     - _SpecColor: {r: 0.033104762, g: 0.033104762, b: 0.033104762, a: 1}
   m_BuildTextureStacks: []
+=======
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_BuildTextureStacks: []
+--- !u!114 &7354608197973597084
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 4
+>>>>>>> 74823398c55a6ac0a676a471113bb254ddb8d793
