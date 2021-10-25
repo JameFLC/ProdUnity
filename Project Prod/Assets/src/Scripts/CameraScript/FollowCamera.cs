@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
-{   
+{
+    public Camera cameraobject;
     public GameObject target;
+    [SerializeField]
     Vector3 offset;
+    [SerializeField]
     private float rotationSpeed = 5.0f;
 
     [Range(0.01f, 1.0f)]
@@ -19,7 +22,6 @@ public class FollowCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset = new Vector3(0, 2, -7);
         
     }
 
@@ -29,10 +31,10 @@ public class FollowCamera : MonoBehaviour
         Vector3 cameraPosition = target.transform.position + offset;
         Vector3 smoothPosition = Vector3.Lerp(transform.position, cameraPosition, smooth);
         horizontal = Input.GetAxis("Mouse X") * rotationSpeed;
-        target.transform.Rotate(0, horizontal, 0);
+        cameraobject.transform.Rotate(0, horizontal, 0);
         float desiredAngle = target.transform.eulerAngles.y; 
         Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
-        transform.position = target.transform.position - (rotation * offset);
+        cameraobject.transform.position = target.transform.position - (rotation * offset);
         
         transform.position = cameraPosition;
         //transform.LookAt(target.transform);
