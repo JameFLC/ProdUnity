@@ -7,18 +7,9 @@ public class PlayerAnimationController : MonoBehaviour
     // Variables
     [SerializeField]
     private Animator frogAnimator;
-    private
-    // Start is called before the first frame update
-    void Start()
-    {
+    [SerializeField]
+    private float crawlAnimationSpeed = 6.0f;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void IsGrounded(bool Grounded)
     {
@@ -32,7 +23,7 @@ public class PlayerAnimationController : MonoBehaviour
     public void SetSpeed(float speed)
     {
         frogAnimator.SetFloat("Speed", speed);
-        frogAnimator.SetFloat("CrawlSpeed", speed * 4);
+        frogAnimator.SetFloat("CrawlSpeed", speed  * crawlAnimationSpeed);
     }
 
 }

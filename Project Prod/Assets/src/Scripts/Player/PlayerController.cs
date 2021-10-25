@@ -34,9 +34,7 @@ public class PlayerController : MonoBehaviour
 
         float extra = 0.1f;
         isGrounded = Physics.Raycast(transform.position, Vector3.down, extra);
-
         
-
 
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
