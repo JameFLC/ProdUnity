@@ -25,7 +25,8 @@ public class CameraFrustrum : MonoBehaviour
 
 	}
 
-	void OnTriggerEnter(Collider other)
+
+    void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag(triggerTag))
 		{
