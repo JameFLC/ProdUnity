@@ -12,7 +12,7 @@ public class SecurityCamera : MonoBehaviour
 	public float panAngleStep = 0.5f;
 	public float panDirectionChangeDelay = 20.0f;
 
-    private bool state;
+    public bool state;
 	private GameObject theTarget;
 	private bool trackingTarget = false;
 	private Transform cameraBody;
@@ -37,7 +37,7 @@ public class SecurityCamera : MonoBehaviour
 
 	void Awake()
 	{
-
+        state = true;
 		theTarget = GameObject.FindGameObjectWithTag(targetTag);
 		cameraBody = transform.Find("Camera");
 		myCameraPanBoundsMinTransform = transform.Find("BoundsMin");
@@ -73,6 +73,15 @@ public class SecurityCamera : MonoBehaviour
 
 	void Update()
 	{
+        if (state)
+        {
+            gameObject.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
+        }
+
         if (state)
         {
             trackingTarget = false;
