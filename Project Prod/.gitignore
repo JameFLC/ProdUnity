@@ -71,3 +71,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 .vsconfig
+
+[merge]
+tool = unityyamlmerge
+[mergetool “unityyamlmerge”]
+trustExitCode = false
+cmd = /Applications/Unity/Unity.app/Contents/Tools/UnityYAMLMerge merge -p “$BASE” “$REMOTE” “$LOCAL” “$MERGED”
