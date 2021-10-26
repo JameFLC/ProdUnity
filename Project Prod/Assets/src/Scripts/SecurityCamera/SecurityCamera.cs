@@ -12,6 +12,7 @@ public class SecurityCamera : MonoBehaviour
 	public float panAngleStep = 0.5f;
 	public float panDirectionChangeDelay = 20.0f;
 
+    private bool state;
 	private GameObject theTarget;
 	private bool trackingTarget = false;
 	private Transform cameraBody;
@@ -72,211 +73,213 @@ public class SecurityCamera : MonoBehaviour
 
 	void Update()
 	{
-		trackingTarget = false;
-		hasLineOfSight = false;
+        if (state)
+        {
+            trackingTarget = false;
+            hasLineOfSight = false;
 
-		if (requireLineOfSight)
-		{
+            if (requireLineOfSight)
+            {
 
-			RaycastHit hit;
-			Vector3 rayCastDirection = theTarget.transform.position - transform.position;
+                RaycastHit hit;
+                Vector3 rayCastDirection = theTarget.transform.position - transform.position;
 
-			if (Physics.Raycast(transform.position, rayCastDirection, out hit))
-			{
+                if (Physics.Raycast(transform.position, rayCastDirection, out hit))
+                {
 
-				if (hit.transform.CompareTag(targetTag))
-				{
-					hasLineOfSight = true;
-				}
-				else
-				{
-					hasLineOfSight = false;
-				}
+                    if (hit.transform.CompareTag(targetTag))
+                    {
+                        hasLineOfSight = true;
+                    }
+                    else
+                    {
+                        hasLineOfSight = false;
+                    }
 
-			}
+                }
 
-			if (hasLineOfSight && myConeFrustrum.GetComponent<CameraFrustrum>().isTriggered())
-			{
-				trackingTarget = true;
-			}
+                if (hasLineOfSight && myConeFrustrum.GetComponent<CameraFrustrum>().isTriggered())
+                {
+                    trackingTarget = true;
+                }
 
-		}
-		else
-		{
+            }
+            else
+            {
 
-			if (myConeFrustrum.GetComponent<CameraFrustrum>().isTriggered())
-			{
-				trackingTarget = true;
-			}
+                if (myConeFrustrum.GetComponent<CameraFrustrum>().isTriggered())
+                {
+                    trackingTarget = true;
+                }
 
-		}
+            }
 
-		if (trackingTarget)
-		{
+            if (trackingTarget)
+            {
 
-			if (!panHasStopped)
-			{
-				panHasStopped = true;
-				gameObject.GetComponent<AudioSource>().Stop();
-				gameObject.GetComponent<AudioSource>().clip = cameraPanLoopStop;
-				gameObject.GetComponent<AudioSource>().loop = false;
-				if (!gameObject.GetComponent<AudioSource>().isPlaying)
-				{
-					gameObject.GetComponent<AudioSource>().Play();
-				}
-			}
+                if (!panHasStopped)
+                {
+                    panHasStopped = true;
+                    gameObject.GetComponent<AudioSource>().Stop();
+                    gameObject.GetComponent<AudioSource>().clip = cameraPanLoopStop;
+                    gameObject.GetComponent<AudioSource>().loop = false;
+                    if (!gameObject.GetComponent<AudioSource>().isPlaying)
+                    {
+                        gameObject.GetComponent<AudioSource>().Play();
+                    }
+                }
 
-			idlePanTargetBoundsTransformSelected = false;
+                idlePanTargetBoundsTransformSelected = false;
 
-			Vector3 relativePos = theTarget.transform.position - transform.position;
-			Quaternion rotation = Quaternion.LookRotation(relativePos);
-			Quaternion newRotation = Quaternion.Euler(0.0f, rotation.eulerAngles.y, 0.0f);
+                Vector3 relativePos = theTarget.transform.position - transform.position;
+                Quaternion rotation = Quaternion.LookRotation(relativePos);
+                Quaternion newRotation = Quaternion.Euler(0.0f, rotation.eulerAngles.y, 0.0f);
 
-			Vector3 horizontalRelationToTarget = new Vector3(theTarget.transform.position.x, transform.position.y, theTarget.transform.position.z);
-			Vector3 targetDirRelativeToTarget = horizontalRelationToTarget - transform.position;
-			Vector3 forwardRelativeToTarget = transform.forward;
+                Vector3 horizontalRelationToTarget = new Vector3(theTarget.transform.position.x, transform.position.y, theTarget.transform.position.z);
+                Vector3 targetDirRelativeToTarget = horizontalRelationToTarget - transform.position;
+                Vector3 forwardRelativeToTarget = transform.forward;
 
-			previousTargetEulerAngleFromMount = targetEulerAngleFromMount;
-			targetEulerAngleFromMount = Vector3.Angle(targetDirRelativeToTarget, forwardRelativeToTarget);
+                previousTargetEulerAngleFromMount = targetEulerAngleFromMount;
+                targetEulerAngleFromMount = Vector3.Angle(targetDirRelativeToTarget, forwardRelativeToTarget);
 
-			if (Mathf.Abs(previousTargetEulerAngleFromMount - targetEulerAngleFromMount) > 0.0f)
-			{
+                if (Mathf.Abs(previousTargetEulerAngleFromMount - targetEulerAngleFromMount) > 0.0f)
+                {
 
-				angleDeltaZeroCount = 0;
+                    angleDeltaZeroCount = 0;
 
-				gameObject.GetComponent<AudioSource>().clip = cameraPanLoop;
-				gameObject.GetComponent<AudioSource>().loop = true;
-				if (!gameObject.GetComponent<AudioSource>().isPlaying)
-				{
-					gameObject.GetComponent<AudioSource>().Play();
-				}
+                    gameObject.GetComponent<AudioSource>().clip = cameraPanLoop;
+                    gameObject.GetComponent<AudioSource>().loop = true;
+                    if (!gameObject.GetComponent<AudioSource>().isPlaying)
+                    {
+                        gameObject.GetComponent<AudioSource>().Play();
+                    }
 
-			}
-			else
-			{
+                }
+                else
+                {
 
-				angleDeltaZeroCount++;
+                    angleDeltaZeroCount++;
 
-				if ((angleDeltaZeroCount > maxAngleDeltaZeroCount) && gameObject.GetComponent<AudioSource>().isPlaying)
-				{
-					if (gameObject.GetComponent<AudioSource>().clip == cameraPanLoop)
-					{
-						gameObject.GetComponent<AudioSource>().clip = cameraPanLoopStop;
-						gameObject.GetComponent<AudioSource>().loop = false;
-						gameObject.GetComponent<AudioSource>().Play();
-					}
+                    if ((angleDeltaZeroCount > maxAngleDeltaZeroCount) && gameObject.GetComponent<AudioSource>().isPlaying)
+                    {
+                        if (gameObject.GetComponent<AudioSource>().clip == cameraPanLoop)
+                        {
+                            gameObject.GetComponent<AudioSource>().clip = cameraPanLoopStop;
+                            gameObject.GetComponent<AudioSource>().loop = false;
+                            gameObject.GetComponent<AudioSource>().Play();
+                        }
 
-				}
+                    }
 
-			}
-
-
-			float targetDistanceToMinBounds = Vector3.Distance(myCameraPanBoundsMinTransform.position, theTarget.transform.position);
-			float targetDistanceToMaxBounds = Vector3.Distance(myCameraPanBoundsMaxTransform.position, theTarget.transform.position);
-
-			if (targetDistanceToMinBounds <= targetDistanceToMaxBounds)
-			{
-
-				if (targetEulerAngleFromMount < angleFromCameraMountToMinBounds)
-				{
-					cameraBody.rotation = newRotation;
-				}
-
-			}
-			else
-			{
-
-				if (targetEulerAngleFromMount < angleFromCameraMountToMaxBounds)
-				{
-					cameraBody.rotation = newRotation;
-				}
-
-			}
+                }
 
 
-		}
-		else
-		{
+                float targetDistanceToMinBounds = Vector3.Distance(myCameraPanBoundsMinTransform.position, theTarget.transform.position);
+                float targetDistanceToMaxBounds = Vector3.Distance(myCameraPanBoundsMaxTransform.position, theTarget.transform.position);
 
-			panHasStopped = false;
+                if (targetDistanceToMinBounds <= targetDistanceToMaxBounds)
+                {
 
-			if (idlePan)
-			{
+                    if (targetEulerAngleFromMount < angleFromCameraMountToMinBounds)
+                    {
+                        cameraBody.rotation = newRotation;
+                    }
 
-				cameraEulerAngleFromMount = Quaternion.Angle(transform.rotation, cameraBody.transform.rotation);
+                }
+                else
+                {
 
-				if (!idlePanTargetBoundsTransformSelected)
-				{
+                    if (targetEulerAngleFromMount < angleFromCameraMountToMaxBounds)
+                    {
+                        cameraBody.rotation = newRotation;
+                    }
 
-					if (Mathf.Abs(cameraEulerAngleFromMount - angleFromCameraMountToMinBounds) < Mathf.Abs(cameraEulerAngleFromMount - angleFromCameraMountToMaxBounds))
-					{
-						targetBoundsTransform = myCameraPanBoundsMinTransform;
-						idlePanTargetBoundsTransformSelected = true;
-					}
-					else
-					{
-						targetBoundsTransform = myCameraPanBoundsMaxTransform;
-						idlePanTargetBoundsTransformSelected = true;
-					}
+                }
 
-				}
 
-				Vector3 relativePosToTargetBounds = targetBoundsTransform.position - transform.position;
-				Quaternion rotationToBounds = Quaternion.LookRotation(relativePosToTargetBounds);
-				Quaternion boundsRotation = Quaternion.Euler(0.0f, rotationToBounds.eulerAngles.y, 0.0f);
+            }
+            else
+            {
 
-				if (panDirectionChangeTimer == 0.0f)
-				{
+                panHasStopped = false;
 
-					gameObject.GetComponent<AudioSource>().clip = cameraPanLoop;
-					gameObject.GetComponent<AudioSource>().loop = true;
-					if (!gameObject.GetComponent<AudioSource>().isPlaying)
-					{
-						gameObject.GetComponent<AudioSource>().Play();
-					}
+                if (idlePan)
+                {
 
-					if (targetBoundsTransform == myCameraPanBoundsMinTransform)
-					{
-						cameraBody.transform.rotation *= cameraPanLoopRotationStep;
-					}
-					else
-					{
-						cameraBody.transform.rotation *= Quaternion.Inverse(cameraPanLoopRotationStep);
-					}
+                    cameraEulerAngleFromMount = Quaternion.Angle(transform.rotation, cameraBody.transform.rotation);
 
-				}
-				else
-				{
-					panDirectionChangeTimer -= 1.0f;
-				}
+                    if (!idlePanTargetBoundsTransformSelected)
+                    {
 
-				float angleToTargetBounds = Mathf.Abs(boundsRotation.eulerAngles.y - cameraBody.transform.rotation.eulerAngles.y);
+                        if (Mathf.Abs(cameraEulerAngleFromMount - angleFromCameraMountToMinBounds) < Mathf.Abs(cameraEulerAngleFromMount - angleFromCameraMountToMaxBounds))
+                        {
+                            targetBoundsTransform = myCameraPanBoundsMinTransform;
+                            idlePanTargetBoundsTransformSelected = true;
+                        }
+                        else
+                        {
+                            targetBoundsTransform = myCameraPanBoundsMaxTransform;
+                            idlePanTargetBoundsTransformSelected = true;
+                        }
 
-				if (angleToTargetBounds < 2.0f && panDirectionChangeTimer == 0)
-				{
+                    }
 
-					panDirectionChangeTimer = panDirectionChangeDelay;
+                    Vector3 relativePosToTargetBounds = targetBoundsTransform.position - transform.position;
+                    Quaternion rotationToBounds = Quaternion.LookRotation(relativePosToTargetBounds);
+                    Quaternion boundsRotation = Quaternion.Euler(0.0f, rotationToBounds.eulerAngles.y, 0.0f);
 
-					gameObject.GetComponent<AudioSource>().Stop();
-					gameObject.GetComponent<AudioSource>().clip = cameraPanLoopStop;
-					gameObject.GetComponent<AudioSource>().loop = false;
-					gameObject.GetComponent<AudioSource>().Play();
+                    if (panDirectionChangeTimer == 0.0f)
+                    {
 
-					if (targetBoundsTransform == myCameraPanBoundsMinTransform)
-					{
-						targetBoundsTransform = myCameraPanBoundsMaxTransform;
-					}
-					else
-					{
-						targetBoundsTransform = myCameraPanBoundsMinTransform;
-					}
+                        gameObject.GetComponent<AudioSource>().clip = cameraPanLoop;
+                        gameObject.GetComponent<AudioSource>().loop = true;
+                        if (!gameObject.GetComponent<AudioSource>().isPlaying)
+                        {
+                            gameObject.GetComponent<AudioSource>().Play();
+                        }
 
-				}
+                        if (targetBoundsTransform == myCameraPanBoundsMinTransform)
+                        {
+                            cameraBody.transform.rotation *= cameraPanLoopRotationStep;
+                        }
+                        else
+                        {
+                            cameraBody.transform.rotation *= Quaternion.Inverse(cameraPanLoopRotationStep);
+                        }
 
-			}
+                    }
+                    else
+                    {
+                        panDirectionChangeTimer -= 1.0f;
+                    }
 
-		}
+                    float angleToTargetBounds = Mathf.Abs(boundsRotation.eulerAngles.y - cameraBody.transform.rotation.eulerAngles.y);
 
+                    if (angleToTargetBounds < 2.0f && panDirectionChangeTimer == 0)
+                    {
+
+                        panDirectionChangeTimer = panDirectionChangeDelay;
+
+                        gameObject.GetComponent<AudioSource>().Stop();
+                        gameObject.GetComponent<AudioSource>().clip = cameraPanLoopStop;
+                        gameObject.GetComponent<AudioSource>().loop = false;
+                        gameObject.GetComponent<AudioSource>().Play();
+
+                        if (targetBoundsTransform == myCameraPanBoundsMinTransform)
+                        {
+                            targetBoundsTransform = myCameraPanBoundsMaxTransform;
+                        }
+                        else
+                        {
+                            targetBoundsTransform = myCameraPanBoundsMinTransform;
+                        }
+
+                    }
+
+                }
+
+            }
+        }
 
 	}
 
@@ -284,5 +287,10 @@ public class SecurityCamera : MonoBehaviour
 	{
 		return trackingTarget;
 	}
+
+    public bool getState()
+    {
+        return state;
+    }
 
 }
