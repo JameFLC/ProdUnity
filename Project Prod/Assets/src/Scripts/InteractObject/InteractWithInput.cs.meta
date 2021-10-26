@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: e91bf6720f7c1c84cad68b25d12e07d4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - go_ReactionObjet: {instanceID: 0}
+  - go_PrefabTextDisplay: {fileID: 6908072848658037574, guid: 6aa02f24c54923a4bbd3a855f1c12d86, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
