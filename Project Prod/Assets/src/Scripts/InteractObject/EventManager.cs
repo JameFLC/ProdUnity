@@ -34,4 +34,14 @@ public class EventManager : MonoBehaviour
         }
     }
 
+    public delegate void LaunchMinigame();
+    public static event LaunchMinigame launchMinigame;
+    public static void RaiseLaunchMinigame()
+    {
+        if (launchMinigame != null)
+        {
+            launchMinigame();
+        }
+    }
+
 }

@@ -3,10 +3,14 @@ using UnityEngine;
 public class LookAt : MonoBehaviour
 {
     //Camera to watch.
-    private GameObject cameraToLookAt;
+    [SerializeField]
+    private Camera cameraToLookAt;
     void Start()
     {
-        cameraToLookAt = GameObject.FindGameObjectWithTag("MainCamera");
+        if (cameraToLookAt == null)
+        {
+            cameraToLookAt = Camera.main;
+        }
     }
 
     void LateUpdate()

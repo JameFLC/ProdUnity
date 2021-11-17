@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Reactions : MonoBehaviour
 {
     //Note here the different reactions 
@@ -10,7 +10,8 @@ public class Reactions : MonoBehaviour
         Dance,
         Chute,
         Lumiere,
-        Porte
+        Porte,
+        Minigame
     }
 
     [Header("Paramètre choix réaction")]
@@ -48,6 +49,7 @@ public class Reactions : MonoBehaviour
 
     public void Reaction()
     {
+        Debug.Log(this + " Has reacted");
         foreach (var e_Choice in L_Choice)
         {
             switch (e_Choice)
@@ -67,6 +69,12 @@ public class Reactions : MonoBehaviour
                     break;
                 case Choice.Porte:
                     EventManager.RaiseOpenDoor();
+                    break;
+                case Choice.Minigame:
+                    Debug.Log("Minigame");
+                    SceneManager.LoadScene("Bargame");
+                    
+                    EventManager.RaiseLaunchMinigame();
                     break;
                 default:
                     break;
