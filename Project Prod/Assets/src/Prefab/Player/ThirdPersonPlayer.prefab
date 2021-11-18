@@ -108,6 +108,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4834337178399842993}
     m_Modifications:
+    - target: {fileID: 1063875542938574, guid: 0187bdd962557471faee34c9b592135c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143619885951730, guid: 0187bdd962557471faee34c9b592135c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313366829521330, guid: 0187bdd962557471faee34c9b592135c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348389935115422, guid: 0187bdd962557471faee34c9b592135c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387630491388636, guid: 0187bdd962557471faee34c9b592135c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1644373995442134, guid: 0187bdd962557471faee34c9b592135c, type: 3}
       propertyPath: m_TagString
       value: Player

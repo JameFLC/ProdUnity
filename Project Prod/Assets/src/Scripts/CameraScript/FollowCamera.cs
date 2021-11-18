@@ -3,39 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
-{   
-    public GameObject target;
-    Vector3 offset;
-    private float rotationSpeed = 5.0f;
+{
 
-    [Range(0.01f, 1.0f)]
-    [SerializeField]
-    float smooth;
 
-    private float horizontal;
+    public bool autoLockCursor;
 
+    private Camera cam;
+
+    void Awake()
+    {
+        
+        Cursor.lockState = (autoLockCursor) ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = false; 
+    }
 
     
-    // Start is called before the first frame update
-    void Start()
-    {
+    
+    
+    
+    
+    
+    
+    
 
-        
-    }
-
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        Vector3 cameraPosition = target.transform.position + offset;
-        Vector3 smoothPosition = Vector3.Lerp(transform.position, cameraPosition, smooth);
-        horizontal = Input.GetAxis("Mouse X") * rotationSpeed;
-        transform.Rotate(0, horizontal, 0);
-        //float desiredAngle = target.transform.eulerAngles.y; 
-        //Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
-        transform.position = target.transform.position;
-        
-        transform.position = cameraPosition;
-        //transform.LookAt(target.transform);
-    }
-     
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
+
