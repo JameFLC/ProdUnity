@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/src/Scenes/Bargame.unity
     guid: 73aabd74f0e1fae43b6d8ca2d9da1473
+  - enabled: 1
+    path: Assets/src/Scenes/Menu.unity
+    guid: abca555bdb319e0419510e742262b8db
+  - enabled: 1
+    path: Assets/src/Scenes/Victoire.unity
+    guid: 5d8290e2855556346b92c9a7022d5f6b
+  - enabled: 1
+    path: Assets/src/Scenes/Defaite.unity
+    guid: a38be3162b2b6414daebb1fe197547ef
   m_configObjects: {}
