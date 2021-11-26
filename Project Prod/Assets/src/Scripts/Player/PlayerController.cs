@@ -50,25 +50,50 @@ public class PlayerController : MonoBehaviour
         playerAC.IsGrounded(isGrounded);
         playerAC.SetVerticalVelocity(RB.velocity.y);
         playerAC.SetSpeed(inputDirection.magnitude);
-    }
-    private void FixedUpdate()
-    {
+
+
+
         if (inputDirection.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationVelocity, rotationTime);
-
-
-
-            moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            
-            
-            RB.MoveRotation(Quaternion.Euler(0f, angle, 0f));
-            RB.MovePosition(transform.position + (moveDirection * speed * Time.fixedDeltaTime));
-            
-        }
         
+        
+        
+            moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        
+        
+            //RB.MoveRotation(Quaternion.Euler(0f, angle, 0f));
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            //RB.MovePosition(transform.position + (moveDirection * speed * Time.fixedDeltaTime));
+            transform.position = transform.position + (moveDirection * speed * Time.deltaTime);
+        
+        }
+
+
+
     }
+    //private void FixedUpdate()
+    //{
+    //    if (inputDirection.magnitude >= 0.1f)
+    //    {
+    //        float targetAngle = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + mainCamera.eulerAngles.y;
+    //        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationVelocity, rotationTime);
+    //
+    //
+    //
+    //        moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+    //        
+    //        
+    //        RB.MoveRotation(Quaternion.Euler(0f, angle, 0f));
+    //        RB.MovePosition(transform.position + (moveDirection * speed * Time.fixedDeltaTime));
+    //        
+    //    }
+    //    
+    //}
+
+
+    
     void Jump(float Height)
     {
         RB.AddForce(new Vector3(0f, Mathf.Sqrt(jumpHeight * -2 * Physics.gravity.y), 0f) + moveDirection, ForceMode.VelocityChange);
