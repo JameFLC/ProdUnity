@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
-
-
 public class CirclePlayerV1 : MonoBehaviour
 {
     public GameObject areaBar;
