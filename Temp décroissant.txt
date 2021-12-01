@@ -1,0 +1,25 @@
+Attribuer le script à un objet vide
+
+using UnityEngine.UI;
+
+float currentTime = 0f;
+float startingTime = 10f;
+
+[SerializeField] Text countdownText;
+
+void Start()
+{
+	currentTime = startingTime;
+}
+
+void Update()
+{
+	currentTime -= 1 * Time.deltaTime;
+	countdownText.text = currentTime.ToString(); //si "0" affiche uniquement secondes
+
+	if(currentTime <= 0)
+	{
+		countdownText.color = Color.red
+		currentTime = 0;
+	}
+}

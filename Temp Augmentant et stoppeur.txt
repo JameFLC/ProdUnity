@@ -1,0 +1,32 @@
+bloc texte dans l'ui
+Assigner le script au player?
+
+using UnityEngine.UI;
+
+public Text timerText;
+private float startTime;
+private bool finnished = false;
+
+void Start() 
+{
+	startTime = Time.time;
+}
+
+void Update()
+{
+	if(finnished)
+		return;
+
+	float t = Time.time - startTime;
+	string minutes = ((int) t / 60).ToString());
+	string seconds = (t % 60).ToString("f0"); //ou f2 pour millisecondes
+
+	timerText.text = minutes + ":" + seconds;
+}
+
+//Arrêter le temps avec un objet
+public void timeEnd()
+{
+	finnished = true;
+	timerText.color = Color.yellow;
+}
