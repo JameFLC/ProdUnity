@@ -13,7 +13,7 @@ public class SafeZone : MonoBehaviour
     {
         if (pl.gameObject.CompareTag("Player")) // Tag of the player
         {
-            PlayerManager.instance.setIsSafe(true); // Bool in PlayerManager script 
+            GameManager.instance.setIsSafe(true); // Bool in PlayerManager script 
         }
     }
 
@@ -21,7 +21,7 @@ public class SafeZone : MonoBehaviour
     {
         if (pl.gameObject.CompareTag("Player")) // Tag of the player
         {
-            PlayerManager.instance.setIsSafe(false);  // Bool in PlayerManager script 
+            GameManager.instance.setIsSafe(false);  // Bool in PlayerManager script 
         }
     }
 }
