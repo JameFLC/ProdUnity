@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             Jump(jumpHeight);
+            SoundManager.PlaySound(SoundManager.Sound.PlayerJump,transform.position);
         }
 
         inputDirection = new Vector3(horizontal, 0f, vertical).normalized;
