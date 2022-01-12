@@ -59,10 +59,10 @@ public class Reactions : MonoBehaviour
                     break;
                 case Choice.Chute:
                     Rig_GameObject.isKinematic = false;
-                    if(Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Vigil").transform.position) < DetectDistance)
-                    {
-                        EventManager.RaiseCallVigil();
-                    }
+                    //if(Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Vigil").transform.position) < DetectDistance)
+                    //{
+                    //    //EventManager.RaiseCallVigil();
+                    //}
                     break;
                 case Choice.Lumiere:
                     L_Light.enabled = !L_Light.enabled;

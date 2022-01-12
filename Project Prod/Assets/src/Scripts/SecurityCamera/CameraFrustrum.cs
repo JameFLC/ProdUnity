@@ -21,7 +21,7 @@ public class CameraFrustrum : MonoBehaviour
 			coneRenderer = go;
 		}
 
-		coneRenderer.material.color = red;
+		coneRenderer.material.color = green;
 
 	}
 
@@ -30,7 +30,7 @@ public class CameraFrustrum : MonoBehaviour
 	{
 		if (other.CompareTag(triggerTag))
 		{
-			coneRenderer.material.color = green;
+			coneRenderer.material.color = red;
 			currentlyTriggered = true;
 		}
 
@@ -41,7 +41,7 @@ public class CameraFrustrum : MonoBehaviour
 
 		if (other.CompareTag(triggerTag))
 		{
-			coneRenderer.material.color = green;
+			coneRenderer.material.color = red;
 			currentlyTriggered = true;
 		}
 
@@ -51,7 +51,7 @@ public class CameraFrustrum : MonoBehaviour
 	{
 		if (other.CompareTag(triggerTag))
 		{
-			coneRenderer.material.color = red;
+			coneRenderer.material.color = green;
 			currentlyTriggered = false;
 		}
 

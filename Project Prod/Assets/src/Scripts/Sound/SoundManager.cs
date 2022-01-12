@@ -10,7 +10,11 @@ public static class SoundManager
         PlayerMove,
         CameraMove,
         CameraSpot,
-        ButtonPressed
+        ButtonPressed,
+        DoorOpen,
+        DoorClose,
+        Card,
+        DoorLocked,
     }
     private static Dictionary<Sound, float> soundTimerDictionary;
     private static GameObject oneshotGameObject;
@@ -32,9 +36,8 @@ public static class SoundManager
             audioSource.clip = GetAudioClip(sound);
             audioSource.outputAudioMixerGroup = GameManager.instance.effectsGroup;
             audioSource.spatialBlend = 1;
-            audioSource.Play();
-
-            Object.Destroy(soundGameObject, audioSource.clip.length);
+            Debug.Log(" audio " + audioSource.clip);
+            audioSource.Play();            
         }
     }
     public static void PlaySound(Sound sound)
@@ -76,14 +79,16 @@ public static class SoundManager
     }
     private static AudioClip GetAudioClip(Sound sound)
     {
+        
         foreach (GameManager.SoundAudioClip soundAudioClip in GameManager.instance.soundAudioArray)
         {
+            Debug.Log("clip " + soundAudioClip);
             if (soundAudioClip.sound == sound)
             {
                 return soundAudioClip.audioClip;
             }
         }
-        Debug.LogError("Sound " + sound + " not found");
+        //Debug.LogError("Sound " + sound + " not found");
         return null;
     }
 }

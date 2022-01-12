@@ -20,12 +20,29 @@ public class Interact_door : MonoBehaviour
 
     private void Open_door()
     {
-        if(isInRange == true && Inventory.instance.content.Count != 0 && Input.GetKeyDown(KeyCode.E)) 
+        if (isInRange == true )
         {
-            //TO DO LANCER ANIMATION PORTE
-            Inventory.instance.ConsumeItem();
-            myAnimation.Play();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (Inventory.instance.content.Count != 0)
+                {
+                    //TO DO LANCER ANIMATION PORTE
+                    Inventory.instance.ConsumeItem();
+                    myAnimation.Play();
+                    SoundManager.PlaySound(SoundManager.Sound.DoorOpen, transform.position);
+                }
+                else
+                {
+                    SoundManager.PlaySound(SoundManager.Sound.DoorLocked, transform.position);
+                }
+            }
+            
         }
+        
+        
+
+
+
     }
 
     private void OnTriggerExit(Collider collision)

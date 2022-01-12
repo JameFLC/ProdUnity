@@ -18,16 +18,8 @@ public class changeMode : MonoBehaviour
     {
         Screen.fullScreen = !Screen.fullScreen;
 
-        if(inFullscreen == false)
-        {
-            inFullscreen = true;
-            editText.text = "Fullscreen = true";
-        }
-        else
-        {
-            inFullscreen = false;
-            editText.text = "Fullscreen = false";
-        }
+        
+        
     }
 }
 /*=========================================

@@ -41,7 +41,7 @@ public class CirclePlayerV1 : MonoBehaviour
     void Update()
     {
         //Si appuie sur le shift droit, stop la zone mouvante et vérifie si on a gagné
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             //Arrêter la zone mouvante
             scriptArea.enabled = false;
@@ -62,6 +62,10 @@ public class CirclePlayerV1 : MonoBehaviour
             {
                 loose();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.M) && Input.GetKeyDown(KeyCode.W))
+        {
+            win();
         }
     }
 

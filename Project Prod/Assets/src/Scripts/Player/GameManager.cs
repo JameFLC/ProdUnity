@@ -14,18 +14,15 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null && instance != this)
+        if (instance != null || instance != this)
             Destroy(gameObject);    // Suppression d'une instance précédente (sécurité...sécurité...)
 
         instance = this;
         SoundManager.Initialise();
+        DontDestroyOnLoad(this);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    
 
 
     public bool getisSafe()

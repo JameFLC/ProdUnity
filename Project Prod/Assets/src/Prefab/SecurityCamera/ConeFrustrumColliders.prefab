@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8548930f77e736947ba9b8d0b80fd3aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  red: {r: 1, g: 0, b: 0, a: 0.39607844}
+  red: {r: 1, g: 0, b: 0.09470558, a: 0.39215687}
   green: {r: 0, g: 1, b: 0.06680894, a: 0.39215687}
 --- !u!54 &5400000
 Rigidbody:

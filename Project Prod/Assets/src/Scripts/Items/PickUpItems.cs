@@ -33,6 +33,7 @@ public class PickUpItems : MonoBehaviour
 
         Inventory.instance.content.Add(item);
         Inventory.instance.UpdateInventoryUI();
+        SoundManager.PlaySound(SoundManager.Sound.Card, transform.position);
         Destroy(gameObject);
     }
 

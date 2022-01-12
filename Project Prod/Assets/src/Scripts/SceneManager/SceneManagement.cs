@@ -22,15 +22,11 @@ public class SceneManagement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        StartCoroutine(ChangeSceneVictoryToMenu(5));
-        StartCoroutine(ChangeSceneFailToMenu(5));
+        //StartCoroutine(ChangeSceneVictoryToMenu(5));
+        //StartCoroutine(ChangeSceneFailToMenu(5));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     IEnumerator ChangeSceneVictoryToMenu(float sec)
     {
@@ -75,4 +71,17 @@ public class SceneManagement : MonoBehaviour
     {
         SceneManager.LoadScene(Game_name);
     }
+    public void ChangeSceneById(int id)
+    {
+        SceneManager.LoadScene(id);
+    }
+    public void ChangeSceneToNext()
+    {
+        SceneManager.LoadScene(GetCurrentSceneID() + 1);
+    }
+    public int GetCurrentSceneID()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
+    }
+
 }

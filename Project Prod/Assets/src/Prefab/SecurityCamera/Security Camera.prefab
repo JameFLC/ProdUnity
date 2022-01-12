@@ -336,6 +336,7 @@ GameObject:
   - component: {fileID: 2654998672592374626}
   - component: {fileID: 2654998672592374636}
   - component: {fileID: 2654998672592374627}
+  - component: {fileID: 3967743901430583871}
   m_Layer: 2
   m_Name: BoundsMin
   m_TagString: Untagged
@@ -406,6 +407,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3967743901430583871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2654998672592374625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddbb5c4763cae8743a5e6ee21032c045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2654998673079108251
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +430,7 @@ GameObject:
   - component: {fileID: 2654998673079108324}
   - component: {fileID: 2654998673079108326}
   - component: {fileID: 2654998673079108325}
+  - component: {fileID: 1943149622213954197}
   m_Layer: 2
   m_Name: BoundsMax
   m_TagString: Untagged
@@ -487,3 +501,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1943149622213954197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2654998673079108251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddbb5c4763cae8743a5e6ee21032c045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
