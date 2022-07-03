@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SecurityCamera : MonoBehaviour
 {
-
+        // TargetTag = PLAYER
 	public string targetTag = "Player";
 	public bool idlePan = true;
 	public AudioClip cameraPanLoop;
